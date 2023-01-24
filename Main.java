@@ -20,15 +20,15 @@ class Main {
 
   private static double thing (double X, double Y, double endPoint, double stepSize){
     x.add(X + stepSize);
-    y.add(y.get(y.size() - 1) + stepSize * equation(x.get(x.size() - 1), y.get(y.size() - 1)));
-
-    if(x.get(x.size() - 1) >= endPoint){
+    y.add(y.get(y.size() - 1) + stepSize * equation(x.get(x.size() - 2), y.get(y.size() - 1)));
+    System.out.println("(" + x.get(x.size() - 1) + ", " + y.get(y.size() - 1) + ")");
+    if((endPoint >= 0 && x.get(x.size() - 1) >= endPoint) || (endPoint < 0 && x.get(x.size() - 1) <= endPoint)){
       return y.get(y.size() - 1);
     }
     return thing(x.get(x.size() - 1), y.get(y.size() - 1), endPoint, stepSize);
   }
 
   private static double equation(double x, double y){
-    return 2*x + y;
+    return x * y;
   }
 }
