@@ -1,4 +1,5 @@
 import java.util.*;
+import java.lang.Math;
 
 class Main {
   static List<Double> x = new ArrayList<Double>();
@@ -16,6 +17,9 @@ class Main {
     System.out.println("End x?");
     double endPoint = in.nextDouble(); 
     System.out.println(thing(x.get(0), y.get(0), endPoint, stepSize));
+    // System.out.println(x);
+    // System.out.println(y);
+    graph();
   }
 
   private static double thing (double X, double Y, double endPoint, double stepSize){
@@ -28,7 +32,56 @@ class Main {
     return thing(x.get(x.size() - 1), y.get(y.size() - 1), endPoint, stepSize);
   }
 
+  //modify this to change diff eq
+  //figure out how to parse for equations
   private static double equation(double x, double y){
     return x * y;
+  }
+
+  private static void graph(){
+  //   double[][] mat = new double[(int)Math.round(x.get(x.size() - 1) > x.get(0) ?  x.get(x.size() - 1) - x.get(0) : x.get(0) - x.get(x.size() - 1))][(int)Math.round(y.get(y.size() - 1) > y.get(0) ?  y.get(y.size() - 1) - y.get(0) : y.get(0) - y.get(y.size() - 1))];
+
+  double maX = x.get(0);
+  double minX = x.get(0);
+  for(int i = 1; i < x.size(); i++){
+    if (x.get(i) > maX){
+      maX = x.get(i);
+    }else if (x.get(i) < minX){
+      minX = x.get(i);
+    }
+  }
+
+  double maxY = y.get(0);
+  double minY = y.get(0);
+  for(int i = 1; i < y.size(); i++){
+    if (y.get(i) > maxY){
+      maxY = y.get(i);
+    }else if (y.get(i) < minY){
+      minY = y.get(i);
+    }
+  }
+    double[][] mat = new double[(int)Math.round(maxY - minY)][(int)Math.round(maX - minX)];
+    for(int i = 0; i < mat.length; i++){
+      for(int j = 0; j < mat[0].length; j++){
+        mat[i][j] = 0;
+      }
+    }
+    for(int i = 0; i < x.size() - 1; i++){
+      mat[(int)Math.round(y.get(i))][(int)Math.round(x.get(i))] = 1;
+    }
+
+    System.out.println(x.size());
+    System.out.println(y.size());
+
+    System.out.println(mat.length);
+    System.out.println(mat[0].length);
+    for(int i = mat.length - 1; i >= 0; i--){
+      String s = "";
+      for(int j = 0; j < mat[0].length; j++){
+        s += mat[i][j] == 0 ? "-" : "+";
+      }
+      System.out.println(s);
+    }
+    
   }
 }
