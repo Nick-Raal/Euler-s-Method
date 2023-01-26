@@ -17,9 +17,9 @@ class Main {
     System.out.println("End x?");
     double endPoint = in.nextDouble(); 
     System.out.println(thing(x.get(0), y.get(0), endPoint, stepSize));
-    x.add(x.get(0) - stepSize);
-    y.add(y.get(0) - stepSize);
-    thing(x.get(0), y.get(0), -endPoint, -stepSize);
+//    x.add(x.get(0) - stepSize);
+//    y.add(y.get(0) - stepSize);
+//    thing(x.get(0), y.get(0), -endPoint, -stepSize);
     // System.out.println(x);
     // System.out.println(y);
 
@@ -40,7 +40,7 @@ class Main {
   //modify this to change diff eq
   //figure out how to parse for equations
   private static double equation(double x, double y){
-    return x + y;
+    return x - y;
   }
 
   private static void graph(){
@@ -72,9 +72,10 @@ class Main {
     double[][] mat = new double[(int)Math.round(maxY - minY) + 1][(int)Math.round(maX - minX) + 1];
     for(int i = 0; i < mat.length; i++){
       for(int j = 0; j < mat[0].length; j++){
-        if(Math.round(i-minY) == 0){
+        if(minY < 0 ? Math.round(i+minY -1) == 0 : false){
+          System.out.println(i - minY - 1);
           mat[i][j] = 2;
-        }else if(Math.round(j-minX) == 0){
+        }else if(minX < 0 ? Math.round(j+minX - 1) == 0 : false){
           mat[i][j] = 2;
         }else{
           mat[i][j] = 0;
