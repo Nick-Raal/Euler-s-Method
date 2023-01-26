@@ -16,10 +16,10 @@ class Main {
     y.add(Double.parseDouble(toParse.substring(toParse.indexOf(',') + 1, toParse.length()))); 
     System.out.println("End x?");
     double endPoint = in.nextDouble(); 
-    System.out.println(thing(x.get(0), y.get(0), endPoint, stepSize));
+    System.out.println("y(" + x.get(x.size() - 1) + ") = " + thing(x.get(0), y.get(0), endPoint, stepSize, true));
     x.add(x.get(0) - stepSize);
     y.add(y.get(0));
-    thing(x.get(x.size() - 1), y.get(y.size() - 1), /*-(endPoint - x.get(0))*/ -endPoint, -stepSize);
+    thing(x.get(x.size() - 1), y.get(y.size() - 1), -(endPoint - x.get(0)) /*-endPoint*/, -stepSize, false);
     // System.out.println(x);
     // System.out.println(y);
 
@@ -27,14 +27,14 @@ class Main {
     in.close();
   }
 
-  private static double thing (double X, double Y, double endPoint, double stepSize){
+  private static double thing (double X, double Y, double endPoint, double stepSize, boolean print){
     x.add(X + stepSize);
     y.add(y.get(y.size() - 1) + stepSize * equation(x.get(x.size() - 2), y.get(y.size() - 1)));
-    System.out.println("(" + x.get(x.size() - 1) + ", " + y.get(y.size() - 1) + ")");
+    if(print) System.out.println("(" + x.get(x.size() - 1) + ", " + y.get(y.size() - 1) + ")");
     if((endPoint >= 0 && x.get(x.size() - 1) >= endPoint) || (endPoint < 0 && x.get(x.size() - 1) <= endPoint)){
       return y.get(y.size() - 1);
     }
-    return thing(x.get(x.size() - 1), y.get(y.size() - 1), endPoint, stepSize);
+    return thing(x.get(x.size() - 1), y.get(y.size() - 1), endPoint, stepSize, print);
   }
 
   //modify this to change diff eq
