@@ -18,8 +18,8 @@ class Main {
     double endPoint = in.nextDouble(); 
     System.out.println(thing(x.get(0), y.get(0), endPoint, stepSize));
     x.add(x.get(0) - stepSize);
-    y.add(y.get(0) - stepSize);
-    thing(x.get(x.size() - 1), y.get(y.size() - 1), -endPoint, -stepSize);
+    y.add(y.get(0));
+    thing(x.get(x.size() - 1), y.get(y.size() - 1), /*-(endPoint - x.get(0))*/ -endPoint, -stepSize);
     // System.out.println(x);
     // System.out.println(y);
 
@@ -40,7 +40,7 @@ class Main {
   //modify this to change diff eq
   //figure out how to parse for equations
   private static double equation(double x, double y){
-    return x * x + y;
+    return x + y;
   }
 
   private static void graph(){
