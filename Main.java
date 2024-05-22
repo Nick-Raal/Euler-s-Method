@@ -40,7 +40,7 @@ class Main {
   //modify this to change diff eq
   //figure out how to parse for equations
   private static double equation(double x, double y){
-    return x + y;
+    return  x * y + 2 * x * x * y;
   }
 
   private static void graph(){
